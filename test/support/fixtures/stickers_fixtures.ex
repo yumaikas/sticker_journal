@@ -20,4 +20,19 @@ defmodule StickerJournal.StickersFixtures do
     sticker_type
   end
 
+
+  @doc """
+  Generate a sticker_group.
+  """
+  def sticker_group_fixture(attrs \\ %{}) do
+    {:ok, sticker_group} =
+      attrs
+      |> Enum.into(%{
+        key: "some key",
+        members: []
+      })
+      |> StickerJournal.Stickers.create_sticker_group()
+
+    sticker_group
+  end
 end

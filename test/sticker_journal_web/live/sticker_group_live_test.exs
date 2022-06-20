@@ -4,9 +4,9 @@ defmodule StickerJournalWeb.StickerGroupLiveTest do
   import Phoenix.LiveViewTest
   import StickerJournal.StickersFixtures
 
-  @create_attrs %{key: "some key", memebers: []}
-  @update_attrs %{key: "some updated key", memebers: []}
-  @invalid_attrs %{key: nil, memebers: []}
+  @create_attrs %{key: "some key", members: []}
+  @update_attrs %{key: "some updated key", members: []}
+  @invalid_attrs %{key: nil, members: []}
 
   defp create_sticker_group(_) do
     sticker_group = sticker_group_fixture()

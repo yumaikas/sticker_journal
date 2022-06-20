@@ -16,6 +16,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image Path</th>
       <th>Image</th>
       <th>Key</th>
       <th>Name</th>
@@ -27,6 +28,7 @@
     <%= for sticker_type <- @sticker_type_collection do %>
       <tr id={"sticker_type-#{sticker_type.id}"}>
         <td><%= sticker_type.image %></td>
+        <td><img src={"/#{sticker_type.image}"}/></td>
         <td><%= sticker_type.key %></td>
         <td><%= sticker_type.name %></td>
 

@@ -93,4 +93,100 @@ defmodule StickerJournal.Stickers do
     StickerType.changeset(sticker_type, attrs)
   end
 
+
+  alias StickerJournal.Stickers.StickerGroup
+
+  @doc """
+  Returns the list of sticker_group.
+
+  ## Examples
+
+      iex> list_sticker_group()
+      [%StickerGroup{}, ...]
+
+  """
+  def list_sticker_group do
+    Repo.all(StickerGroup)
+  end
+
+  @doc """
+  Gets a single sticker_group.
+
+  Raises `Ecto.NoResultsError` if the Sticker group does not exist.
+
+  ## Examples
+
+      iex> get_sticker_group!(123)
+      %StickerGroup{}
+
+      iex> get_sticker_group!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_sticker_group!(id), do: Repo.get!(StickerGroup, id)
+
+  @doc """
+  Creates a sticker_group.
+
+  ## Examples
+
+      iex> create_sticker_group(%{field: value})
+      {:ok, %StickerGroup{}}
+
+      iex> create_sticker_group(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_sticker_group(attrs \\ %{}) do
+    %StickerGroup{}
+    |> StickerGroup.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a sticker_group.
+
+  ## Examples
+
+      iex> update_sticker_group(sticker_group, %{field: new_value})
+      {:ok, %StickerGroup{}}
+
+      iex> update_sticker_group(sticker_group, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_sticker_group(%StickerGroup{} = sticker_group, attrs) do
+    sticker_group
+    |> StickerGroup.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a sticker_group.
+
+  ## Examples
+
+      iex> delete_sticker_group(sticker_group)
+      {:ok, %StickerGroup{}}
+
+      iex> delete_sticker_group(sticker_group)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_sticker_group(%StickerGroup{} = sticker_group) do
+    Repo.delete(sticker_group)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking sticker_group changes.
+
+  ## Examples
+
+      iex> change_sticker_group(sticker_group)
+      %Ecto.Changeset{data: %StickerGroup{}}
+
+  """
+  def change_sticker_group(%StickerGroup{} = sticker_group, attrs \\ %{}) do
+    StickerGroup.changeset(sticker_group, attrs)
+  end
 end

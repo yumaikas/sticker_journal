@@ -1,0 +1,24 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="sticker_group-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :key %>
+    <%= text_input f, :key %>
+    <%= error_tag f, :key %>
+  
+    <%= label f, :members %>
+    <%= multiple_select f, :members, ["Option 1": "option1", "Option 2": "option2"] %>
+    <%= error_tag f, :members %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

@@ -116,4 +116,60 @@ defmodule StickerJournal.StickersTest do
       assert %Ecto.Changeset{} = Stickers.change_sticker_group(sticker_group)
     end
   end
+
+  describe "sticker_group" do
+    alias StickerJournal.Stickers.StickerGroup
+
+    import StickerJournal.StickersFixtures
+
+    @invalid_attrs %{key: nil, members: nil}
+
+    test "list_sticker_group/0 returns all sticker_group" do
+      sticker_group = sticker_group_fixture()
+      assert Stickers.list_sticker_group() == [sticker_group]
+    end
+
+    test "get_sticker_group!/1 returns the sticker_group with given id" do
+      sticker_group = sticker_group_fixture()
+      assert Stickers.get_sticker_group!(sticker_group.id) == sticker_group
+    end
+
+    test "create_sticker_group/1 with valid data creates a sticker_group" do
+      valid_attrs = %{key: "some key", members: []}
+
+      assert {:ok, %StickerGroup{} = sticker_group} = Stickers.create_sticker_group(valid_attrs)
+      assert sticker_group.key == "some key"
+      assert sticker_group.members == []
+    end
+
+    test "create_sticker_group/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Stickers.create_sticker_group(@invalid_attrs)
+    end
+
+    test "update_sticker_group/2 with valid data updates the sticker_group" do
+      sticker_group = sticker_group_fixture()
+      update_attrs = %{key: "some updated key", members: []}
+
+      assert {:ok, %StickerGroup{} = sticker_group} = Stickers.update_sticker_group(sticker_group, update_attrs)
+      assert sticker_group.key == "some updated key"
+      assert sticker_group.members == []
+    end
+
+    test "update_sticker_group/2 with invalid data returns error changeset" do
+      sticker_group = sticker_group_fixture()
+      assert {:error, %Ecto.Changeset{}} = Stickers.update_sticker_group(sticker_group, @invalid_attrs)
+      assert sticker_group == Stickers.get_sticker_group!(sticker_group.id)
+    end
+
+    test "delete_sticker_group/1 deletes the sticker_group" do
+      sticker_group = sticker_group_fixture()
+      assert {:ok, %StickerGroup{}} = Stickers.delete_sticker_group(sticker_group)
+      assert_raise Ecto.NoResultsError, fn -> Stickers.get_sticker_group!(sticker_group.id) end
+    end
+
+    test "change_sticker_group/1 returns a sticker_group changeset" do
+      sticker_group = sticker_group_fixture()
+      assert %Ecto.Changeset{} = Stickers.change_sticker_group(sticker_group)
+    end
+  end
 end

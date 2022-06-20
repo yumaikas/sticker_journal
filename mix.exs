@@ -64,7 +64,8 @@ defmodule StickerJournal.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      "ecto.test_migrate": ["cp sticker_journal_dev.db backup_dev.db", "ecto.migrate"]
     ]
   end
 end

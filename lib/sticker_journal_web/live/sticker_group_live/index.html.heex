@@ -1,0 +1,41 @@
+<h1>Listing Sticker group</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.sticker_group_index_path(@socket, :index)}>
+    <.live_component
+      module={StickerJournalWeb.StickerGroupLive.FormComponent}
+      id={@sticker_group.id || :new}
+      title={@page_title}
+      action={@live_action}
+      sticker_group={@sticker_group}
+      return_to={Routes.sticker_group_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Members</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sticker_group">
+    <%= for sticker_group <- @sticker_group_collection do %>
+      <tr id={"sticker_group-#{sticker_group.id}"}>
+        <td><%= sticker_group.key %></td>
+        <td><%= sticker_group.members %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.sticker_group_show_path(@socket, :show, sticker_group) %></span>
+          <span><%= live_patch "Edit", to: Routes.sticker_group_index_path(@socket, :edit, sticker_group) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: sticker_group.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Sticker group", to: Routes.sticker_group_index_path(@socket, :new) %></span>
