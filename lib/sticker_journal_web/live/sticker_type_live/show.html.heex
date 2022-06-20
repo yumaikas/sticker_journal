@@ -1,0 +1,36 @@
+<h1>Show Sticker type</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.sticker_type_show_path(@socket, :show, @sticker_type)}>
+    <.live_component
+      module={StickerJournalWeb.StickerTypeLive.FormComponent}
+      id={@sticker_type.id}
+      title={@page_title}
+      action={@live_action}
+      sticker_type={@sticker_type}
+      return_to={Routes.sticker_type_show_path(@socket, :show, @sticker_type)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @sticker_type.image %>
+  </li>
+
+  <li>
+    <strong>Key:</strong>
+    <%= @sticker_type.key %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @sticker_type.name %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.sticker_type_show_path(@socket, :edit, @sticker_type), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.sticker_type_index_path(@socket, :index) %></span>

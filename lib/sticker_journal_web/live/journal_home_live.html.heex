@@ -1,0 +1,7 @@
+<h3>
+    Your past 10 days, in stickers:
+</h3>
+
+<%= for day <- @days do %>
+    <.dayRow day={day} />
+<% end %>

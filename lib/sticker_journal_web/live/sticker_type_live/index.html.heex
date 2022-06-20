@@ -1,0 +1,43 @@
+<h1>Listing Sticker type</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.sticker_type_index_path(@socket, :index)}>
+    <.live_component
+      module={StickerJournalWeb.StickerTypeLive.FormComponent}
+      id={@sticker_type.id || :new}
+      title={@page_title}
+      action={@live_action}
+      sticker_type={@sticker_type}
+      return_to={Routes.sticker_type_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Key</th>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sticker_type">
+    <%= for sticker_type <- @sticker_type_collection do %>
+      <tr id={"sticker_type-#{sticker_type.id}"}>
+        <td><%= sticker_type.image %></td>
+        <td><%= sticker_type.key %></td>
+        <td><%= sticker_type.name %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.sticker_type_show_path(@socket, :show, sticker_type) %></span>
+          <span><%= live_patch "Edit", to: Routes.sticker_type_index_path(@socket, :edit, sticker_type) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: sticker_type.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Sticker type", to: Routes.sticker_type_index_path(@socket, :new) %></span>
